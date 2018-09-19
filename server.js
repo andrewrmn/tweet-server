@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
     res.send('Waiting for tweets');
 
     // T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
