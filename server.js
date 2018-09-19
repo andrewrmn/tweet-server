@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 
-var Twit = require('twit');
+//var Twit = require('twit');
 
 // New Twit with Heroku Variables
 // var T = new Twit({
@@ -15,7 +15,8 @@ var Twit = require('twit');
 //     // strictSSL:            false,     // optional - requires SSL certificates to be valid.
 // })
 
-
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 var port = process.env.PORT || 4000;
 
 app.use(function(req, res, next) {
