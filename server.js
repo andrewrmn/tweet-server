@@ -34,10 +34,10 @@ app.get('/', (req, res, next) => {
     // })
 
     // If Not Successful
-    //     if(body.success !== undefined && !body.success){
-    //       return res.json({"success": false, "msg":"Failed captcha verification from live server"});
-    //     }
-    //
+    if(body.success !== undefined && !body.success){
+        return res.json({"success": false, "msg":"Failed to post tweet"});
+    }
+
     //If Successful
     return res.json({"success": true, "msg":"You've hit the server"});
 });
