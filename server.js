@@ -15,8 +15,8 @@ var T = new Twit({
     // strictSSL:            false,     // optional - requires SSL certificates to be valid.
 });
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
+app.use(bodyParser.json({limit: '50mb'}));
 var port = process.env.PORT || 4000;
 
 app.use(function(req, res, next) {
