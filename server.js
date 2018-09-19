@@ -56,6 +56,16 @@ app.post('/', (req, res) => {
 
   return res.json({"success": "You've hit the server!"});
 
+
+  var message = "Hello world, my name is" + req.body.name + "!";
+  T.post('statuses/update', { status: message }, function(err, data, response) {
+      //console.log(data);
+
+      return res.json({"success": data});
+  })
+
+
+
   // // Secret Key from Heroku Config Variable 'RECAPTCHA_SECRET'
   // const secretKey = process.env.RECAPTCHA_SECRET;
   //
