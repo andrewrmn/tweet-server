@@ -5,21 +5,18 @@ const app = express();
 
 const Twit = require('twit');
 
-// // New Twit with Heroku Variables
-// var T = new Twit({
-//     consumer_key:         process.env.CONSUMER_KEY,
-//     consumer_secret:      process.env.CONSUMER_SECRET,
-//     access_token:         process.env.ACCESS_TOKEN,
-//     access_token_secret:  process.env.ACCESS_TOKEN_SECRET
-//     // timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
-//     // strictSSL:            false,     // optional - requires SSL certificates to be valid.
-// });
+// New Twit with Heroku Variables
+var T = new Twit({
+    consumer_key:         process.env.CONSUMER_KEY,
+    consumer_secret:      process.env.CONSUMER_SECRET,
+    access_token:         process.env.ACCESS_TOKEN,
+    access_token_secret:  process.env.ACCESS_TOKEN_SECRET
+    // timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+    // strictSSL:            false,     // optional - requires SSL certificates to be valid.
+});
 
-
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-//app.use(express.bodyParser({limit: '50mb'}));
-
+app.use(bodyParser.json());
 var port = process.env.PORT || 4000;
 
 app.use(function(req, res, next) {
@@ -31,7 +28,21 @@ app.use(function(req, res, next) {
 
 app.get('/', (req, res, next) => {
     res.send('Waiting for tweets');
+
+    // T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
+    //     console.log(data)
+    // })
+
+    // If Not Successful
+    // if(body.success !== undefined && !body.success){
+    //     return res.json({"success": false, "msg":"Failed to post tweet"});
+    // }
+
+    //If Successful
+    //return res.json({"success": true, "msg":"You've hit the server"});
 });
+
+
 
 
 app.post('/', (req, res) => {
@@ -45,12 +56,12 @@ app.post('/', (req, res) => {
 
   console.log("You've hit the server!");
 
-  var message = "Hello world, my name is " + req.body.name + "!";
-  // T.post('statuses/update', { status: message }, function(err, data, response) {
-  //     //console.log(data);
-  //
-  //     return res.json({"success": data});
-  // })
+  var message = "Hello world, my name is" + req.body.name + "!";
+  T.post('statuses/update', { status: message }, function(err, data, response) {
+      //console.log(data);
+
+      return res.json({"success": data});
+  })
 
 
 
