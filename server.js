@@ -54,8 +54,7 @@ app.post('/', (req, res) => {
     return res.json({"success": false, "msg": "name not submitted" });
   }
 
-  return res.json({"success": "You've hit the server!"});
-
+  console.log("You've hit the server!");
 
   var message = "Hello world, my name is" + req.body.name + "!";
   T.post('statuses/update', { status: message }, function(err, data, response) {
