@@ -60,11 +60,11 @@ app.post('/', (req, res) => {
   console.log("You've hit the server!");
 
   var message = "Hello world, my name is " + req.body.name + "!";
-  T.post('statuses/update', { status: message }, function(err, data, response) {
-      //console.log(data);
-
-      return res.json({"success": data});
-  })
+  // T.post('statuses/update', { status: message }, function(err, data, response) {
+  //     //console.log(data);
+  //
+  //     return res.json({"success": data});
+  // })
 
 
 
