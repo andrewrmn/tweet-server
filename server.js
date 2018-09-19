@@ -25,19 +25,21 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/', (req, res, next) => {
+app.get('/', (req, res) => {
     res.send('Waiting for tweets');
 
     // T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
     //     console.log(data)
     // })
+
+    // If Not Successful
+    //     if(body.success !== undefined && !body.success){
+    //       return res.json({"success": false, "msg":"Failed captcha verification from live server"});
+    //     }
+    //
+    //If Successful
+    return res.json({"success": true, "msg":"You've hit the server"});
 });
-
-
-
-
-
-
 
 
 
