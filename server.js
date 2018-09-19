@@ -54,7 +54,9 @@ app.post('/', (req, res) => {
     return res.json({"success": false, "msg": "name not submitted" });
   }
 
-  console.log("You've hit the server!");
+  //console.log("You've hit the server!");
+    
+  return res.json({"success": req.body});
 
 
 //   var message = "Hello world, my name is" + req.body.name + "!";
