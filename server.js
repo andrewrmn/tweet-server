@@ -51,7 +51,7 @@ app.post('/', (req, res) => {
     req.body.name === '' ||
     req.body.name === null
   ){
-    return res.json({"success": false, "msg": "name submitted as" + req.body.name});
+    return res.json({"success": false, "msg": "name submitted" });
   }
 
   return res.json({"success": false, "msg": "You've hit the server!"});
