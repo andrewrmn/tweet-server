@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 
-var Twit = require('twit');
+const Twit = require('twit');
 
 // New Twit with Heroku Variables
-var T = new Twit({
+const T = new Twit({
     consumer_key:         process.env.CONSUMER_KEY,
     consumer_secret:      process.env.CONSUMER_SECRET,
     access_token:         process.env.ACCESS_TOKEN,
