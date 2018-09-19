@@ -15,6 +15,7 @@ var T = new Twit({
     // strictSSL:            false,     // optional - requires SSL certificates to be valid.
 });
 
+app.use(bodyParser({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 var port = process.env.PORT || 4000;
@@ -56,7 +57,7 @@ app.post('/', (req, res) => {
 
   console.log("You've hit the server!");
 
-  var message = "Hello world, my name is" + req.body.name + "!";
+  var message = "Hello world, my name is " + req.body.name + "!";
   T.post('statuses/update', { status: message }, function(err, data, response) {
       //console.log(data);
 
