@@ -16,8 +16,8 @@ var T = new Twit({
 });
 
 
-app.use(bodyParser.json({limit: '20mb'}));
-app.use(bodyParser.urlencoded({extended: false, limit: '20mb'}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 //app.use(express.bodyParser({limit: '50mb'}));
 
 var port = process.env.PORT || 4000;
