@@ -39,7 +39,7 @@ app.get('/', (req, res, next) => {
     //     }
     //
     //If Successful
-    //return res.json({"success": true, "msg":"You've hit the server"});
+    return res.json({"success": true, "msg":"You've hit the server"});
 });
 
 
