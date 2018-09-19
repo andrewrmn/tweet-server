@@ -51,10 +51,10 @@ app.post('/', (req, res) => {
     req.body.name === '' ||
     req.body.name === null
   ){
-    return res.json({"success": false, "msg": "name submitted" });
+    return res.json({"success": false, "msg": "name not submitted" });
   }
 
-  return res.json({"success": false, "msg": "You've hit the server!"});
+  return res.json({"success": "You've hit the server!"});
 
   // // Secret Key from Heroku Config Variable 'RECAPTCHA_SECRET'
   // const secretKey = process.env.RECAPTCHA_SECRET;
