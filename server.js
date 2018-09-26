@@ -28,18 +28,6 @@ app.use(function(req, res, next) {
 
 app.get('/', (req, res, next) => {
     res.send('Waiting for tweets');
-
-    // T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
-    //     console.log(data)
-    // })
-
-    // If Not Successful
-    // if(body.success !== undefined && !body.success){
-    //     return res.json({"success": false, "msg":"Failed to post tweet"});
-    // }
-
-    //If Successful
-    //return res.json({"success": true, "msg":"You've hit the server"});
 });
 
 
@@ -54,31 +42,30 @@ app.post('/', (req, res) => {
     return res.json({"success": false, "msg": "name not submitted" });
   }
 
-  //console.log("You've hit the server!");
-    
- // return res.json({"success": req.body});
-    
   var b64content = req.body.media_id;
-    
+
+  return res.json({"success": 'true'});
+
     // first we must post the media to Twitter
-    T.post('media/upload', { media_data: b64content }, function (err, data, response) {
-        // now we can assign alt text to the media, for use by screen readers and
-        // other text-based presentations and interpreters
-        var mediaIdStr = data.media_id_string
-        var altText = "Small flowers in a planter on a sunny balcony, blossoming."
-        var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
 
-        T.post('media/metadata/create', meta_params, function (err, data, response) {
-            if (!err) {
-                // now we can reference the media and post a tweet (media will attach to the tweet)
-                var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
-
-                T.post('statuses/update', params, function (err, data, response) {
-                    console.log(data);
-                    return res.json({"success": data});
-                })
-             }
-        })
+    // T.post('media/upload', { media_data: b64content }, function (err, data, response) {
+    //     // now we can assign alt text to the media, for use by screen readers and
+    //     // other text-based presentations and interpreters
+    //     var mediaIdStr = data.media_id_string
+    //     var altText = "Small flowers in a planter on a sunny balcony, blossoming."
+    //     var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
+    //
+    //     T.post('media/metadata/create', meta_params, function (err, data, response) {
+    //         if (!err) {
+    //             // now we can reference the media and post a tweet (media will attach to the tweet)
+    //             var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
+    //
+    //             T.post('statuses/update', params, function (err, data, response) {
+    //                 console.log(data);
+    //                 return res.json({"success": data});
+    //             })
+    //          }
+    //     })
     })
 
 
