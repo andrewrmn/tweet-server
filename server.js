@@ -44,7 +44,7 @@ app.post('/', (req, res) => {
 
   var b64content = req.body.media_id;
 
-  return res.json({"success": true});
+  return res.json({"success": false});
 
     // first we must post the media to Twitter
 
