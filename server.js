@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 
-var request = require('request');
 
 
 
