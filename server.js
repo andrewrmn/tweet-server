@@ -4,7 +4,7 @@ const request = require('request');
 const app = express();
 
 
-const helper = require('sendgrid').mail;
+var helper = require('sendgrid').mail;
 var from_email = new helper.Email('andrewross.mn@gmail.com');
 var to_email = new helper.Email('andrewross.mn@gmail.com');
 var subject = 'Hello World from the SendGrid Node.js Library!';
@@ -59,6 +59,14 @@ app.post('/', (req, res) => {
       path: '/v3/mail/send',
       body: mail.toJSON(),
   });
+
+  sendgrid.send(payload, function(err, json) {
+		if (json) {
+			callback(json);
+		} else {
+			callback(err);
+		}
+	});
 
   sg.API(request, function(error, response) {
     console.log(response.statusCode);
