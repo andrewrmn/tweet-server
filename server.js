@@ -53,7 +53,7 @@ app.post('/', (req, res) => {
     console.log('Headers:', JSON.stringify(response.headers));
     console.log('Response:', body);
     
-    return res.json({"success": body});
+    return res.json({"success": req.body.name});
   });
 
   
