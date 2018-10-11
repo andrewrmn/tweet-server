@@ -4,6 +4,14 @@ const request = require('request');
 const app = express();
 
 
+var helper = require('sendgrid').mail;
+var from_email = new helper.Email('andrewross.mn@gmail.com');
+var to_email = new helper.Email('andrewross.mn@gmail.com');
+var subject = 'Hello World from the SendGrid Node.js Library!';
+var content = new helper.Content('text/plain', 'Hello, Email!');
+var mail = new helper.Mail(from_email, subject, to_email, content);
+
+var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 
 
 
@@ -46,17 +54,32 @@ app.post('/', (req, res) => {
     return res.json({"success": false, "msg": "name not submitted" });
   }
 
-  var b64content = req.body.media_id;
-    
-  request('https://realemail.expeditedaddons.com/?api_key=5CA5H2ZGY01K326BUQ9OR1NFP86V477W09D3XI4MLSEJ8T&email=andrewross.mn@gmail.com&fix_typos=false', function (error, response, body) {
-    console.log('Status:', response.statusCode);
-    console.log('Headers:', JSON.stringify(response.headers));
-    console.log('Response:', body);
-    
-    return res.json({"success": req.body.name});
+  var request = sg.emptyRequest({
+      method: 'POST',
+      path: '/v3/mail/send',
+      body: mail.toJSON(),
   });
 
-  
+  sg.API(request, function(error, response) {
+    console.log(response.statusCode);
+    console.log(response.body);
+    console.log(response.headers);
+
+    return res.json({"success": response});
+  });
+
+  //
+  // var b64content = req.body.media_id;
+  //
+  // request('https://realemail.expeditedaddons.com/?api_key=5CA5H2ZGY01K326BUQ9OR1NFP86V477W09D3XI4MLSEJ8T&email=andrewross.mn@gmail.com&fix_typos=false', function (error, response, body) {
+  //   console.log('Status:', response.statusCode);
+  //   console.log('Headers:', JSON.stringify(response.headers));
+  //   console.log('Response:', body);
+  //
+  //   return res.json({"success": req.body.name});
+  // });
+
+
 
 //   //return res.json({"success": true});
 
@@ -112,7 +135,7 @@ app.post('/', (req, res) => {
   //   //If Successful
   //   return res.json({"success": true, "msg":"Captcha passed from live server"});
   // });
-    
+
 });
 
 
