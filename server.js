@@ -55,7 +55,7 @@ app.post('/', (req, res) => {
         var altText = "Small flowers in a planter on a sunny balcony, blossoming."
         var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
 
-        return res.json({"success": data});
+        //return res.json({"success": data});
 
 
         T.post('media/metadata/create', meta_params, function (err, data, response) {
@@ -63,12 +63,12 @@ app.post('/', (req, res) => {
                 // now we can reference the media and post a tweet (media will attach to the tweet)
                 var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
 
-                return res.json({"success": params});
+               return res.json({"success": params});
 
-                // T.post('statuses/update', params, function (err, data, response) {
-                //     console.log(data);
-                //     return res.json({"success": data});
-                // })
+//                 T.post('statuses/update', params, function (err, data, response) {
+//                     console.log(data);
+//                     return res.json({"success": data});
+//                 })
              }
         })
     })
