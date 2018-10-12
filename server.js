@@ -48,15 +48,16 @@ app.post('/', (req, res) => {
 
     var filename = 'my-octocat-' + Date.now();
     var s3 = new AWS.S3();
+
     s3.putObject({
         Bucket: 'aroctobuckettest',
         Key: filename,
-        Body: base64data,
+        Body: b64content,
         ACL: 'public-read'
-    },function (resp) {
+    },function (res) {
         console.log(arguments);
         console.log('Successfully uploaded package.');
-        //return res.json({"success": "success" });
+        return res.json({"success": res });
     });
 
 
