@@ -44,46 +44,69 @@ app.post('/', (req, res) => {
         return res.json({"success": false, "msg": "name not submitted" });
     }
 
+    AWS.config.update({ accessKeyId: 'AKIAI5Y72CO6EOL4WPSA', secretAccessKey: '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' });
 
     var b64content = req.body.media_id;
 
-    //*/ get reference to S3 client
     var s3 = new AWS.S3();
-
-    app.post('/api/upload', function (req, res, next) {
-
+    s3.putObject({
+        Bucket: 'aroctobuckettest',
+        Key: 'keyNameHere',
+        Body: b64content,
+        ACL: 'public-read'
+    },function (resp) {
+        console.log(arguments);
+        console.log('Successfully uploaded package.');
     });
 
-    exports.handler = (event, context, callback) => {
-         // let encodedImage =JSON.parse(event.body).user_avatar;
-         // let decodedImage = Buffer.from(encodedImage, 'base64');
-         //var filePath = "avatars/" + event.queryStringParameters.username + ".jpg"
-         var params = {
-           "Body": b64content,
-           "Bucket": "aroctobuckettest",
-           "Key": ''
-        };
-        s3.upload(params, function(err, data){
-           if(err) {
-               callback(err, null);
-                return res.json({"success": false });
-           } else {
-               let response = {
-                   "statusCode": 200,
-                   "headers": {
-                       "my_header": "my_value"
-               },
-               "body": JSON.stringify(data),
-               "isBase64Encoded": false
-           };
-               callback(null, response);
-               return res.json({"success": response });
-           }
 
-
-        });
-
-    };
+    // // For dev purposes only
+    // AWS.config.update({ accessKeyId: '...', secretAccessKey: '...' });
+    //
+    // // Read in the file, convert it to base64, store to S3
+    // fs.readFile('del.txt', function (err, data) {
+    //   if (err) { throw err; }
+    //
+    //   var base64data = new Buffer(data, 'binary');
+    //
+    //
+    //
+    // });
+    //
+    // //*/ get reference to S3 client
+    // var s3 = new AWS.S3();
+    //
+    //
+    // exports.handler = (event, context, callback) => {
+    //      // let encodedImage =JSON.parse(event.body).user_avatar;
+    //      // let decodedImage = Buffer.from(encodedImage, 'base64');
+    //      //var filePath = "avatars/" + event.queryStringParameters.username + ".jpg"
+    //      var params = {
+    //        "Body": b64content,
+    //        "Bucket": "aroctobuckettest",
+    //        "Key": ''
+    //     };
+    //     s3.upload(params, function(err, data){
+    //        if(err) {
+    //            callback(err, null);
+    //             return res.json({"success": false });
+    //        } else {
+    //            let response = {
+    //                "statusCode": 200,
+    //                "headers": {
+    //                    "my_header": "my_value"
+    //            },
+    //            "body": JSON.stringify(data),
+    //            "isBase64Encoded": false
+    //        };
+    //            callback(null, response);
+    //            return res.json({"success": response });
+    //        }
+    //
+    //
+    //     });
+    //
+    // };
 
 });
 
