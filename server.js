@@ -2,17 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
-
-
-var helper = require('sendgrid').mail;
-var from_email = new helper.Email('andrewross.mn@gmail.com');
-var to_email = new helper.Email('andrewross.mn@gmail.com');
-var subject = 'Hello World from the SendGrid Node.js Library!';
-var content = new helper.Content('text/plain', 'Hello, Email!');
-var mail = new helper.Mail(from_email, subject, to_email, content);
-
-const sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-
+const AWS = require('aws-sdk');
 
 
 // const Twit = require('twit');
@@ -54,95 +44,42 @@ app.post('/', (req, res) => {
     return res.json({"success": false, "msg": "name not submitted" });
   }
 
-  var request = sg.emptyRequest({
-      method: 'POST',
-      path: '/v3/mail/send',
-      body: mail.toJSON(),
-  });
-
-  sendgrid.send(payload, function(err, json) {
-		if (json) {
-			callback(json);
-		} else {
-			callback(err);
-		}
-	});
-
-  sg.API(request, function(error, response) {
-    console.log(response.statusCode);
-    console.log(response.body);
-    console.log(response.headers);
-
-    return res.json({"success": response});
-  });
-
-  //
-  // var b64content = req.body.media_id;
-  //
-  // request('https://realemail.expeditedaddons.com/?api_key=5CA5H2ZGY01K326BUQ9OR1NFP86V477W09D3XI4MLSEJ8T&email=andrewross.mn@gmail.com&fix_typos=false', function (error, response, body) {
-  //   console.log('Status:', response.statusCode);
-  //   console.log('Headers:', JSON.stringify(response.headers));
-  //   console.log('Response:', body);
-  //
-  //   return res.json({"success": req.body.name});
-  // });
 
 
 
-//   //return res.json({"success": true});
-
-//     // first we must post the media to Twitter
-
-//     T.post('media/upload', { media_data: b64content }, function (err, data, response) {
-//         // now we can assign alt text to the media, for use by screen readers and
-//         // other text-based presentations and interpreters
-//         var mediaIdStr = data.media_id_string
-//         var altText = "Small flowers in a planter on a sunny balcony, blossoming."
-//         var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
-
-//         T.post('media/metadata/create', meta_params, function (err, data, response) {
-//             if (!err) {
-//                 // now we can reference the media and post a tweet (media will attach to the tweet)
-//                 var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
-
-//               // return res.json({"success": params});
-
-//                 T.post('statuses/update', params, function (err, data, response) {
-//                     console.log(data);
-//                     return res.json({"success": data});
-//                 })
-//              }
-//         })
-//     })
-
-
-//   var message = "Hello world, my name is" + req.body.name + "!";
-//   T.post('statuses/update', { status: message }, function(err, data, response) {
-//       //console.log(data);
-
-//       return res.json({"success": data});
-//   })
+  var b64content = req.body.media_id;
 
 
 
-  // // Secret Key from Heroku Config Variable 'RECAPTCHA_SECRET'
-  // const secretKey = process.env.RECAPTCHA_SECRET;
-  //
-  // // Google's verification URL: https://developers.google.com/recaptcha/docs/verify
-  // const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body.captcha}&remoteip=${req.connection.remoteAddress}`;
-  //
-  // // Make Request To VerifyURL
-  // request(verifyUrl, (err, response, body) => {
-  //   body = JSON.parse(body);
-  //
-  //   // If Not Successful
-  //   if(body.success !== undefined && !body.success){
-  //     return res.json({"success": false, "msg":"Failed captcha verification from live server"});
-  //   }
-  //
-  //   //If Successful
-  //   return res.json({"success": true, "msg":"Captcha passed from live server"});
-  // });
+    //*/ get reference to S3 client
+    var s3 = new AWS.S3();
+
+    exports.handler = (event, context, callback) => {
+         let encodedImage =JSON.parse(event.body).user_avatar;
+         let decodedImage = Buffer.from(encodedImage, 'base64');
+         var filePath = "avatars/" + event.queryStringParameters.username + ".jpg"
+         var params = {
+           "Body": b64content,
+           "Bucket": "aroctobuckettest",
+           "Key": ''
+        };
+        s3.upload(params, function(err, data){
+           if(err) {
+               callback(err, null);
+           } else {
+               let response = {
+                   "statusCode": 200,
+                   "headers": {
+                       "my_header": "my_value"
+               },
+               "body": JSON.stringify(data),
+               "isBase64Encoded": false
+           };
+               callback(null, response);
+        }
+        });
+
+    };
 
 });
 
