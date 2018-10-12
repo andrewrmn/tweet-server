@@ -54,10 +54,10 @@ app.post('/', (req, res) => {
         Key: filename,
         Body: b64content,
         ACL: 'public-read'
-    },function (res) {
+    },function (resp) {
         console.log(arguments);
         console.log('Successfully uploaded package.');
-        return res.json({"success": res });
+        return res.json({"success": arguments });
     });
 
 
