@@ -56,7 +56,7 @@ app.post('/', (req, res) => {
     },function (resp) {
         console.log(arguments);
         console.log('Successfully uploaded package.');
-        return res.json({"success": "success" });
+        //return res.json({"success": "success" });
     });
 
 
