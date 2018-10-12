@@ -44,7 +44,7 @@ app.post('/', (req, res) => {
         return res.json({"success": false, "msg": "name not submitted" });
     }
 
-    AWS.config.update({ accessKeyId: 'AKIAI5Y72CO6EOL4WPSA', secretAccessKey: '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' });
+    AWS.config.update({ accessKeyId: process.env.AWS_KEY, secretAccessKey: process.env.AWS_SECRET });
 
     var b64content = req.body.media_id;
 
