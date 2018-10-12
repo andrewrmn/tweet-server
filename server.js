@@ -36,28 +36,28 @@ app.get('/', (req, res, next) => {
 
 
 app.post('/', (req, res) => {
-  if(
-    req.body.name === undefined ||
-    req.body.name === '' ||
-    req.body.name === null
-  ){
-    return res.json({"success": false, "msg": "name not submitted" });
-  }
+    if(
+        req.body.name === undefined ||
+        req.body.name === '' ||
+        req.body.name === null
+    ){
+        return res.json({"success": false, "msg": "name not submitted" });
+    }
 
 
-
-
-  var b64content = req.body.media_id;
-
-
+    var b64content = req.body.media_id;
 
     //*/ get reference to S3 client
     var s3 = new AWS.S3();
 
+    app.post('/api/upload', function (req, res, next) {
+
+    });
+
     exports.handler = (event, context, callback) => {
          // let encodedImage =JSON.parse(event.body).user_avatar;
          // let decodedImage = Buffer.from(encodedImage, 'base64');
-         var filePath = "avatars/" + event.queryStringParameters.username + ".jpg"
+         //var filePath = "avatars/" + event.queryStringParameters.username + ".jpg"
          var params = {
            "Body": b64content,
            "Bucket": "aroctobuckettest",
@@ -66,6 +66,7 @@ app.post('/', (req, res) => {
         s3.upload(params, function(err, data){
            if(err) {
                callback(err, null);
+                return res.json({"success": false });
            } else {
                let response = {
                    "statusCode": 200,
@@ -76,9 +77,10 @@ app.post('/', (req, res) => {
                "isBase64Encoded": false
            };
                callback(null, response);
+               return res.json({"success": response });
            }
 
-           return res.json({"success": true, "msg": "file submitted" });
+
         });
 
     };
