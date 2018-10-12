@@ -45,7 +45,6 @@ app.post('/', (req, res) => {
     AWS.config.update({ accessKeyId: process.env.AWS_KEY, secretAccessKey: process.env.AWS_SECRET });
 
     var b64content = req.body.media_id;
-    var base64data = new Buffer(b64content, 'binary');
 
     var filename = 'my-octocat-' + Date.now();
     var s3 = new AWS.S3();
@@ -54,10 +53,10 @@ app.post('/', (req, res) => {
         Key: filename,
         Body: base64data,
         ACL: 'public-read'
-    },function (resp) {
+    },function (res) {
         console.log(arguments);
         console.log('Successfully uploaded package.');
-        //return res.json({"success": resp });
+        return res.json({"success": res });
     });
 
 
