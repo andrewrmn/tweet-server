@@ -55,8 +55,8 @@ app.post('/', (req, res) => {
     var s3 = new AWS.S3();
 
     exports.handler = (event, context, callback) => {
-         let encodedImage =JSON.parse(event.body).user_avatar;
-         let decodedImage = Buffer.from(encodedImage, 'base64');
+         // let encodedImage =JSON.parse(event.body).user_avatar;
+         // let decodedImage = Buffer.from(encodedImage, 'base64');
          var filePath = "avatars/" + event.queryStringParameters.username + ".jpg"
          var params = {
            "Body": b64content,
@@ -76,7 +76,9 @@ app.post('/', (req, res) => {
                "isBase64Encoded": false
            };
                callback(null, response);
-        }
+           }
+
+           return res.json({"success": true, "msg": "file submitted" });
         });
 
     };
