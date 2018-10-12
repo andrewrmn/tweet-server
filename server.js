@@ -26,6 +26,9 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
+
+    'Content-Type': 'application/json',
+        'Accept': 'application/json'
 });
 
 app.get('/', (req, res, next) => {
@@ -52,7 +55,11 @@ app.post('/', (req, res) => {
         Bucket: 'aroctobuckettest',
         Key: filename,
         Body: base64data,
-        ACL: 'public-read'
+        ACL: 'public-read',
+        headers : {
+         'Content-Type': 'application/json',
+         'Accept': 'application/json'
+        }
     },function (res) {
         console.log(arguments);
         console.log('Successfully uploaded package.');
