@@ -53,7 +53,8 @@ app.post('/', (req, res) => {
         Bucket: 'aroctobuckettest',
         Key: filename,
         Body: b64content,
-        ACL: 'public-read'
+        ACL: 'public-read',
+        isBase64Encoded: true
     },function (resp) {
         console.log(arguments);
         console.log('Successfully uploaded package.');
