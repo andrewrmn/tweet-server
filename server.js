@@ -29,7 +29,7 @@ app.post('/', (req, res) => {
         req.body.image === '' ||
         req.body.image === null
     ){
-        return res.json({"success": false, "msg": "name not submitted" });
+        return res.json({"success": false, "msg": "img not submitted" });
     }
 
     AWS.config.update({ accessKeyId: process.env.AWS_KEY, secretAccessKey: process.env.AWS_SECRET });
@@ -40,7 +40,7 @@ app.post('/', (req, res) => {
     let s3 = new AWS.S3();
 
     s3.putObject({
-        Bucket: 'aroctobuckettest',
+        Bucket: 'armntestbucket',
         Key: filename,
         Body: decodedImage,
         ACL: 'public-read'
@@ -48,9 +48,11 @@ app.post('/', (req, res) => {
         if(err) {
             return res.json({"success": false });
        } else {
-            console.log(arguments);
-            console.log('Successfully uploaded package.');
+            // console.log(arguments);
+            // console.log('Successfully uploaded package.');
+
             imgUrl = 'https://s3.us-west-2.amazonaws.com/aroctobuckettest/' + filename;
+
             return res.json({"success": true, url: imgUrl });
        }
     });
