@@ -41,6 +41,8 @@ app.post('/', (req, res) => {
     ){
         return res.json({"success": false, "msg": "name not submitted" });
     }
+    
+    return res.json({"success": req.body.media_id});
 
     AWS.config.update({ accessKeyId: process.env.AWS_KEY, secretAccessKey: process.env.AWS_SECRET });
 
@@ -58,7 +60,7 @@ app.post('/', (req, res) => {
     },function (resp) {
         console.log(arguments);
         console.log('Successfully uploaded package.');
-        return resp.json({ "success": b64content, "arguments": arguments });
+       // return resp.json({ "success": b64content, "arguments": arguments });
     });
 
 
