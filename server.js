@@ -51,7 +51,7 @@ app.post('/', (req, res) => {
             // console.log(arguments);
             // console.log('Successfully uploaded package.');
 
-            imgUrl = 'https://s3.us-west-2.amazonaws.com/aroctobuckettest/' + filename;
+            imgUrl = 'https://s3.us-east-2.amazonaws.com/armntestbucket/' + filename;
 
             return res.json({"success": true, url: imgUrl });
        }
