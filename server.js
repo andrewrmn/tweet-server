@@ -52,7 +52,7 @@ app.post('/', (req, res) => {
      s3.putObject({
          Bucket: 'aroctobuckettest',
          Key: filename,
-         Body: decodedImage,
+         Body: req.body.image,
          ACL: 'public-read'
      },function (resp) {
          console.log(arguments);
