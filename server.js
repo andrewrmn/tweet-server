@@ -51,7 +51,7 @@ app.post('/', (req, res) => {
      },function (resp) {
          console.log(arguments);
          console.log('Successfully uploaded package.');
-         return res.json({"success": decodedImage});
+         return res.json({"success": imgData});
      });
 
 
