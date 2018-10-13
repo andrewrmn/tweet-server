@@ -1,21 +1,3 @@
-Skip to content
-
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- @andrewrmn Sign out
-0
-0 0 andrewrmn/tweet-server
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
-tweet-server/server.js
-46e4331  9 minutes ago
-@andrewrmn andrewrmn Update server.js
-@andrewrmn @andrewhannum
-
-118 lines (95 sloc)  564 KB
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
@@ -160,16 +142,3 @@ app.post('/', (req, res) => {
 app.listen(port, function () {
     console.log('App listening on port ' + port);
 });
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Press h to open a hovercard with more details.
