@@ -44,10 +44,10 @@ app.post('/', (req, res) => {
         Key: filename,
         Body: decodedImage,
         ACL: 'public-read'
-    },function (resp, data) {
+    },function (resp) {
         console.log(arguments);
         console.log('Successfully uploaded package.');
-        return res.json({"success": data});
+        return res.json({"success": resp});
     });
 
 
