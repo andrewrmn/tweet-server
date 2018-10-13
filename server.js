@@ -42,9 +42,13 @@ app.post('/', (req, res) => {
         return res.json({"success": false, "msg": "name not submitted" });
     }
 
+    return res.json({"success": req.body.media_id});
+
     AWS.config.update({ accessKeyId: process.env.AWS_KEY, secretAccessKey: process.env.AWS_SECRET });
 
     var b64content = req.body.media_id;
+
+    let decodedImage = Buffer.from(b64content, 'base64');
 
     var filename = 'my-octocat-' + Date.now();
     var s3 = new AWS.S3();
@@ -52,12 +56,12 @@ app.post('/', (req, res) => {
     s3.putObject({
         Bucket: 'aroctobuckettest',
         Key: filename,
-        Body: b64content,
-        ACL: 'public-read'
-    },function (res) {
+        Body: decodedImage,
+        //ACL: 'public-read'
+    },function (resp) {
         console.log(arguments);
         console.log('Successfully uploaded package.');
-        return res.json({"success": res });
+        //return res.json({"success": arguments });
     });
 
 
