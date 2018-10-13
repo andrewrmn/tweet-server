@@ -61,11 +61,7 @@ app.post('/', (req, res) => {
                  return res.json({"success": false });
             } else {
                 let response = {
-                    "statusCode": 200,
-                    "headers": {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-type':'application/json'
-                    }
+                    "statusCode": 200
                 },
                 "body": JSON.stringify(data),
                 "isBase64Encoded": false
