@@ -42,7 +42,7 @@ app.post('/', (req, res) => {
         return res.json({"success": false, "msg": "name not submitted" });
     }
     
-    return res.json({"success": req.body.name});
+    return res.json({"success": req.body.media_id});
 
 //     AWS.config.update({ accessKeyId: process.env.AWS_KEY, secretAccessKey: process.env.AWS_SECRET });
 
