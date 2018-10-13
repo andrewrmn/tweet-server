@@ -49,34 +49,16 @@ app.post('/', (req, res) => {
      var filename = 'my-octocat-' + Date.now() + '.png';
      var s3 = new AWS.S3();
 
-          var params = {
-            "Body": decodedImage,
-            "Bucket": "aroctobuckettest",
-            "Key": filename
-         };
-
-         s3.upload(params, function(err, data){
-            if(err) {
-                callback(err, null);
-                 return res.json({"success": false });
-            } else {
-               
-                return res.json({"success": b64content});
-            }
-
-
-         });
-
-     // s3.putObject({
-     //     Bucket: 'aroctobuckettest',
-     //     Key: filename,
-     //     Body: req.body.image,
-     //     ACL: 'public-read'
-     // },function (resp) {
-     //     console.log(arguments);
-     //     console.log('Successfully uploaded package.');
-     //     return res.json({"success": b64content});
-     // });
+     s3.putObject({
+         Bucket: 'aroctobuckettest',
+         Key: filename,
+         Body: decodedImage,
+         ACL: 'public-read'
+     },function (resp) {
+         console.log(arguments);
+         console.log('Successfully uploaded package.');
+         return res.json({"success": b64content});
+     });
 
 
     // // For dev purposes only
