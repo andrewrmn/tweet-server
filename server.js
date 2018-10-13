@@ -60,17 +60,7 @@ app.post('/', (req, res) => {
                 callback(err, null);
                  return res.json({"success": false });
             } else {
-                let response = {
-                    "statusCode": 200
-                    "headers": {
-                        "Accept": "application/json, text/plain, */*",
-                        "Content-type":"application/json"
-                    },
-                    "body": JSON.stringify(data),
-                    "isBase64Encoded": false
-                 };
-                callback(null, response);
-                //return res.json({"success": response });
+               
                 return res.json({"success": b64content});
             }
 
