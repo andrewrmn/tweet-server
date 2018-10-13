@@ -50,7 +50,8 @@ app.post('/', (req, res) => {
        } else {
             console.log(arguments);
             console.log('Successfully uploaded package.');
-            return res.json({"success": true });
+            imgUrl = 'https://s3.us-west-2.amazonaws.com/aroctobuckettest/' + filename;
+            return res.json({"success": true, url: imgUrl });
        }
     });
 
