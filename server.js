@@ -43,9 +43,9 @@ app.post('/', (req, res) => {
     
 
 
-    //let decodedImage = Buffer.from(imgData, 'base64');
+    let decodedImage = Buffer.from(imgData, 'base64');
 
-    var decodedImage = new Buffer(imgData, 'binary');
+    //var decodedImage = new Buffer(imgData, 'binary');
 
      var filename = 'my-octocat-' + Date.now() + '.png';
      var s3 = new AWS.S3();
