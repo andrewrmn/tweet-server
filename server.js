@@ -47,7 +47,8 @@ app.post('/', (req, res) => {
     AWS.config.update({ accessKeyId: process.env.AWS_KEY, secretAccessKey: process.env.AWS_SECRET });
 
      var b64content = req.body.media_id;
-//     //let decodedImage = Buffer.from(b64content, 'base64');
+     
+     let decodedImage = Buffer.from(imgData, 'base64');
 
      var filename = 'my-octocat-' + Date.now();
      var s3 = new AWS.S3();
@@ -55,7 +56,7 @@ app.post('/', (req, res) => {
      s3.putObject({
          Bucket: 'aroctobuckettest',
          Key: filename,
-         Body: imgData,
+         Body: decodedImage,
          ACL: 'public-read'
      },function (resp) {
          console.log(arguments);
