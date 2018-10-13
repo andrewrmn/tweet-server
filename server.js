@@ -44,7 +44,7 @@ app.post('/', (req, res) => {
 
     //let decodedImage = Buffer.from(imgData, 'base64');
 
-    var decodedImage = new Buffer(b64content, 'binary');
+    var decodedImage = new Buffer(imgData, 'binary');
 
      var filename = 'my-octocat-' + Date.now() + '.png';
      var s3 = new AWS.S3();
@@ -63,7 +63,9 @@ app.post('/', (req, res) => {
                 let response = {
                     "statusCode": 200,
                     "headers": {
-                        "my_header": "my_value"
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-type':'application/json'
+                    }
                 },
                 "body": JSON.stringify(data),
                 "isBase64Encoded": false
