@@ -50,7 +50,7 @@ app.post('/', (req, res) => {
        } else {
             // console.log(arguments);
             // console.log('Successfully uploaded package.');
-            var s3url = s3.getSignedUrl('getObject', {Key: params.Key});
+            var s3url = s3.getSignedUrl('getObject', {Key: filename});
             imgUrl = 'https://s3.us-east-2.amazonaws.com/armntestbucket/' + filename;
 
             return res.json({"success": true, url: imgUrl, urlAws: s3url });
