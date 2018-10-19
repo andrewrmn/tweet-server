@@ -45,8 +45,8 @@ app.post('/', (req, res) => {
 
   //return res.json({"success": true});
 
-    first we must post the media to Twitter
-    uncomment to Work
+    //first we must post the media to Twitter
+    //uncomment to Work
     T.post('media/upload', { media_data: b64content }, function (err, data, response) {
         // now we can assign alt text to the media, for use by screen readers and
         // other text-based presentations and interpreters
