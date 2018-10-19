@@ -66,7 +66,7 @@ app.post('/', (req, res) => {
 //                     return res.json({"success": data});
 //                 })
                 
-                return res.json({"success": true, "mediaId": media_url});
+                return res.json({"success": true, "mediaId": data});
                 
                 // T.post('statuses/update', params, function (err, data, response) {
                 //     console.log(data);
