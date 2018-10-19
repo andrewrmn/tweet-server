@@ -41,7 +41,7 @@ app.post('/', (req, res) => {
     return res.json({"success": false, "msg": "name not submitted" });
   }
 
-  var b64content = req.body.media_id;
+  var b64content = req.body.media_data;
 
   //return res.json({"success": true});
 
