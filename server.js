@@ -59,7 +59,7 @@ app.post('/', (req, res) => {
                 // now we can reference the media and post a tweet (media will attach to the tweet)
                 var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
 
-                return res.json({"success": params});
+                return res.json({"success": true, "mediaId": [mediaIdStr]});
 
                 // T.post('statuses/update', params, function (err, data, response) {
                 //     console.log(data);
