@@ -68,21 +68,24 @@ app.post('/', (req, res) => {
     var params = 'elqFormName='+ formName +'&elqSiteID='+ formId +'&emailAddress='+ emailAddress +'&gitHubOctocatURL='+ imgUrl +'&sourceURL='+ source +'';
     
     
+    app.post(url, (req, res) => {
+        res.send(params);
+    });
 
     
-    http.open('POST', url, true);
+//     http.open('POST', url, true);
     
-    //Send the proper header information along with the request
-    //http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+//     //Send the proper header information along with the request
+//     //http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-    http.onreadystatechange = function() {//Call a function when the state changes.
-        if(http.readyState == 4 && http.status == 200) {
-            console.log('email sent');
-        }
-    };
-    http.send(params);
+//     http.onreadystatechange = function() {//Call a function when the state changes.
+//         if(http.readyState == 4 && http.status == 200) {
+//             console.log('email sent');
+//         }
+//     };
+//     http.send(params);
 
-    return res.json({'success': true, 'url': imgUrl });
+//     return res.json({'success': true, 'url': imgUrl });
    
 
 
