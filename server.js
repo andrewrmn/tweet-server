@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res, next) => {
-    res.send('Waiting for tweets...');
+    res.send('Waiting for tweets');
 });
 
 
@@ -68,13 +68,18 @@ app.post('/', (req, res) => {
     var params = 'elqFormName='+ formName +'&elqSiteID='+ formId +'&emailAddress='+ emailAddress +'&gitHubOctocatURL='+ imgUrl +'&sourceURL='+ source +'';
     
     
-    app.post(url, params, function (err, data, response) {
-        if(!err){
-            return res.json({"success": true});
-        } else {
-            return res.json({"success": false});
-        }
+//     app.post(url, params, function (err, data, response) {
+//         if(!err){
+//             return res.json({"success": true});
+//         } else {
+//             return res.json({"success": false});
+//         }
        
+//     });
+    
+    app.post(url, function(req, res) {
+        res.send(params);
+        return res.json({"success": true});
     });
 
     
