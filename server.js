@@ -68,8 +68,13 @@ app.post('/', (req, res) => {
     var params = 'elqFormName='+ formName +'&elqSiteID='+ formId +'&emailAddress='+ emailAddress +'&gitHubOctocatURL='+ imgUrl +'&sourceURL='+ source +'';
     
     
-    app.post(url, (req, res) => {
-        res.send(params);
+    app.post(url, params, function (err, data, response) {
+        if(!err){
+            return res.json({"success": true});
+        } else {
+            return res.json({"success": false});
+        }
+       
     });
 
     
