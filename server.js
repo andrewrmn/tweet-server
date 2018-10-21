@@ -63,7 +63,7 @@ app.post('/', (req, res) => {
     var source = 'web';
     var formName = 'octocat-generator-form';
     var formId = '88570519';
-    var http = new XMLHttpRequest();
+    //var http = new XMLHttpRequest();
     var url = 'https://s88570519.t.eloqua.com/e/f2';
     var params = 'elqFormName='+ formName +'&elqSiteID='+ formId +'&emailAddress='+ emailAddress +'&gitHubOctocatURL='+ imgUrl +'&sourceURL='+ source +'';
     
