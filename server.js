@@ -65,62 +65,9 @@ app.post('/', (req, res) => {
     var formId = '88570519';
     //var http = new XMLHttpRequest();
     var url = 'https://s88570519.t.eloqua.com/e/f2';
-    var paramss = 'elqFormName='+ formName +'&elqSiteID='+ formId +'&emailAddress='+ emailAddress +'&gitHubOctocatURL='+ imgUrl +'&sourceURL='+ source +'';
+    var params = 'elqFormName='+ formName +'&elqSiteID='+ formId +'&emailAddress='+ emailAddress +'&gitHubOctocatURL='+ imgUrl +'&sourceURL='+ source +'';
 
-    var data = {
-      elqFormName : formName,
-      elqSiteID : formId,
-      emailAddress : emailAddress,
-      gitHubOctocatURL : imgUrl,
-      sourceURL : source
-    };
-
-    var requests = new XMLHttpRequest();
-    requests.open('POST', 'https://s88570519.t.eloqua.com/e/f2', true);
-    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    //requests.send(paramss);
-    requests.send(JSON.stringify(data));
-    
-    return res.json({'success': true });
-
-
-//     app.post(url, function(req, res) {
-
-//         res.send(params);
-//         return res.json({"success": true});
-//     });
-
-//     app.post(url, params, function (req, res) {
-//       return res.json({"success": true});
-//     });
-
-//     app.post(url, params, function (err, data, response) {
-//         if(!err){
-//             return res.json({"success": true});
-//         } else {
-//             return res.json({"success": false});
-//         }
-
-//     });
-
-
-
-
-//     http.open('POST', url, true);
-
-//     //Send the proper header information along with the request
-//     //http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-//     http.onreadystatechange = function() {//Call a function when the state changes.
-//         if(http.readyState == 4 && http.status == 200) {
-//             console.log('email sent');
-//         }
-//     };
-//     http.send(params);
-
-//     return res.json({'success': true, 'url': imgUrl });
-
-
+    return res.json({'success': true, 'params': params });
 
   //return res.json({"success": true});
 
