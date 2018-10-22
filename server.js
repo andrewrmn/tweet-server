@@ -68,7 +68,7 @@ app.post('/', (req, res) => {
     var url = 'https://s88570519.t.eloqua.com/e/f2';
     var paramss = 'elqFormName='+ formName +'&elqSiteID='+ formId +'&emailAddress='+ emailAddress +'&gitHubOctocatURL='+ imgUrl +'&sourceURL='+ source +'';
     
-    var params = {
+    var data = {
       elqFormName : formName,
       elqSiteID : formId,
       emailAddress : emailAddress,
@@ -76,11 +76,19 @@ app.post('/', (req, res) => {
       sourceURL : source
     };
     
-    app.post(url, function(req, res) {
+    var request = new XMLHttpRequest();
+    request.open('POST', 'https://s88570519.t.eloqua.com/e/f2', true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.send(JSON.stringify(data));
+    
+    return res.json({'success': true });
+    
+    
+//     app.post(url, function(req, res) {
       
-        res.send(params);
-        return res.json({"success": true});
-    });
+//         res.send(params);
+//         return res.json({"success": true});
+//     });
     
 //     app.post(url, params, function (req, res) {
 //       return res.json({"success": true});
