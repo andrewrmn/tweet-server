@@ -22,7 +22,6 @@ var port = process.env.PORT || 4000;
 app.use(function(req, res, next) {
     // Important
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Content-Type", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
