@@ -81,7 +81,7 @@ app.post('/', (req, res) => {
        
 //     });
     
-    app.post('https://s88570519.t.eloqua.com/e/f2', function(req, res) {
+    app.get('https://s88570519.t.eloqua.com/e/f2', function(req, res) {
         res.send(params);
         return res.json({"success": true});
     });
