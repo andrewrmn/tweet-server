@@ -78,7 +78,7 @@ app.post('/', (req, res) => {
     var request = new XMLHttpRequest();
     request.open('POST', 'https://s88570519.t.eloqua.com/e/f2', true);
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    request.send(JSON.stringify(data));
+    request.send(paramss);
 
     return res.json({'success': true });
 
