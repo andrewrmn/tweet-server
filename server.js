@@ -23,7 +23,6 @@ app.use(function(req, res, next) {
     // Important
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Content-type", "application/x-www-form-urlencoded");
     next();
 });
 
