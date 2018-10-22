@@ -69,12 +69,12 @@ app.post('/', (req, res) => {
     var paramss = 'elqFormName='+ formName +'&elqSiteID='+ formId +'&emailAddress='+ emailAddress +'&gitHubOctocatURL='+ imgUrl +'&sourceURL='+ source +'';
     
     var params = {
-      "elqFormName" : formName,
-      "elqSiteID" : formId,
-      "emailAddress" : emailAddress,
-      "gitHubOctocatURL" : imgUrl,
-      "sourceURL" : 'web'
-    }
+      elqFormName : formName,
+      elqSiteID : formId,
+      emailAddress : emailAddress,
+      gitHubOctocatURL : imgUrl,
+      sourceURL : source
+    };
     
     app.post(url, function(req, res) {
       
