@@ -22,6 +22,7 @@ var port = process.env.PORT || 4000;
 app.use(function(req, res, next) {
     // Important
     res.header("Access-Control-Allow-Origin", "*");
+    res.header("Content-Type", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
@@ -77,7 +78,7 @@ app.post('/', (req, res) => {
        
 //     });
     
-    app.post(url, function(req, res) {
+    app.post('https://s88570519.t.eloqua.com/e/f2', function(req, res) {
         res.send(params);
         return res.json({"success": true});
     });
