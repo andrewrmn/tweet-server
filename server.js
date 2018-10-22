@@ -75,11 +75,12 @@ app.post('/', (req, res) => {
       sourceURL : source
     };
 
-    var request = new XMLHttpRequest();
-    request.open('POST', 'https://s88570519.t.eloqua.com/e/f2', true);
+    var requests = new XMLHttpRequest();
+    requests.open('POST', 'https://s88570519.t.eloqua.com/e/f2', true);
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    request.send(paramss);
-
+    requests.send(paramss);
+    //requests.send(JSON.stringify(paramss));
+    
     return res.json({'success': true });
 
 
