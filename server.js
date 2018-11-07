@@ -8,7 +8,7 @@ const Twit = require('twit');
 var T = new Twit({
     consumer_key:         process.env.CONSUMER_KEY,
     consumer_secret:      process.env.CONSUMER_SECRET,
-    app_only_auth:        true
+    //app_only_auth:        true
     // access_token:         process.env.ACCESS_TOKEN,
     // access_token_secret:  process.env.ACCESS_TOKEN_SECRET
     // timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
@@ -44,7 +44,7 @@ app.post('/', (req, res) => {
 
 
   //T.post('oauth/request_token', function(req, res) {
-      T.get('oauth/request_token', function(err, requestToken, requestSecret) {
+      T.post('oauth/request_token', function(err, requestToken, requestSecret) {
           if (err)
               res.status(500).send(err);
            return res.json({"success":'falseo', "msg": "name not submitted" });
