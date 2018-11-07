@@ -43,9 +43,9 @@ app.post('/', (req, res) => {
 
   var b64content = req.body.media_id;
   
-  var callbackUrl = encodeURI('https://twitter.com/ireckonimdrew/gls-app');
+  var callbackUrl = encodeURIComponent('https://twitter.com/ireckonimdrew/gls-app');
     
-  T.post('oauth/request_token', { oauth_callback : callbackUrl } function(err, data, response) {
+  T.post('oauth/request_token', { oauth_callback : callbackUrl }, function(err, data, response) {
       if (err)
           //res.status(500).send(err);
           return res.json({"success":'oauth error' });
@@ -88,41 +88,41 @@ app.post('/', (req, res) => {
   //return res.json({'success': true });
 
     // first we must post the media to Twitter
-    T.post('media/upload', { media_data: b64content }, function (err, data, response) {
-        // now we can assign alt text to the media, for use by screen readers and
-        // other text-based presentations and interpreters
-        var mediaIdStr = data.media_id_string;
-        var mediaId = data.media_id;
-        var mediaData = data;
-        var altText = "Small flowers in a planter on a sunny balcony, blossoming."
-        var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
+//     T.post('media/upload', { media_data: b64content }, function (err, data, response) {
+//         // now we can assign alt text to the media, for use by screen readers and
+//         // other text-based presentations and interpreters
+//         var mediaIdStr = data.media_id_string;
+//         var mediaId = data.media_id;
+//         var mediaData = data;
+//         var altText = "Small flowers in a planter on a sunny balcony, blossoming."
+//         var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
     
-        T.post('media/metadata/create', meta_params, function (err, data, response) {
-            if (!err) {
-                // now we can reference the media and post a tweet (media will attach to the tweet)
-                var params = { status: '#myOctocat', media_ids: [mediaIdStr] }
+//         T.post('media/metadata/create', meta_params, function (err, data, response) {
+//             if (!err) {
+//                 // now we can reference the media and post a tweet (media will attach to the tweet)
+//                 var params = { status: '#myOctocat', media_ids: [mediaIdStr] }
                 
-//                 T.get('media/upload', { command: 'STATUS', media_id: mediaId }, function (err, data, response) {
-//                      if (!err) {
-//                           return res.json({'success': data });
-//                      } else {
-//                          return res.json({'success': false });
-//                      }
-//                 });
+// //                 T.get('media/upload', { command: 'STATUS', media_id: mediaId }, function (err, data, response) {
+// //                      if (!err) {
+// //                           return res.json({'success': data });
+// //                      } else {
+// //                          return res.json({'success': false });
+// //                      }
+// //                 });
                 
-                //return res.json({'success': false });
+//                 //return res.json({'success': false });
                 
-                //return res.json({"success": params});
+//                 //return res.json({"success": params});
     
-                T.post('statuses/update', params, function (err, data, response) {
-                    //console.log(data);
-                    return res.json({"success": data.entities.media[0].media_url});
-                })
-             } else {
-                return res.json({'success': 'falseO' });   
-             }
-        })
-    })
+//                 T.post('statuses/update', params, function (err, data, response) {
+//                     //console.log(data);
+//                     return res.json({"success": data.entities.media[0].media_url});
+//                 })
+//              } else {
+//                 return res.json({'success': 'falseO' });   
+//              }
+//         })
+//     })
 
 
   // var message = "Hello world, my name is" + req.body.name + "!";
