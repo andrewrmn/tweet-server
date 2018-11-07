@@ -10,8 +10,8 @@ var T = new Twit({
     consumer_key:         process.env.CONSUMER_KEY,
     consumer_secret:      process.env.CONSUMER_SECRET,
     //app_only_auth:        true
-    // access_token:         process.env.ACCESS_TOKEN,
-    // access_token_secret:  process.env.ACCESS_TOKEN_SECRET
+    access_token:         process.env.ACCESS_TOKEN,
+    access_token_secret:  process.env.ACCESS_TOKEN_SECRET
     // timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
     // strictSSL:            false,     // optional - requires SSL certificates to be valid.
 });
@@ -42,7 +42,21 @@ app.post('/', (req, res) => {
   }
 
   var b64content = req.body.media_id;
+  
+    
+    T.get('account/verify_credentials', { skip_status: true })
+      .catch(function (err) {
+        console.log('caught error', err.stack)
+      })
+      .then(function (result) {
+        // `result` is an Object with keys "data" and "resp".
+        // `data` and `resp` are the same objects as the ones passed
+        // to the callback.
+        // See https://github.com/ttezel/twit#tgetpath-params-callback
+        // for details.
 
+        console.log('data', result.data);
+      })
 
   //T.post('oauth/request_token', function(req, res) {
 //       T.post('oauth/request_token', function(err, requestToken, requestSecret) {
