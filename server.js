@@ -49,7 +49,7 @@ app.post('/', (req, res) => {
   var b64content = req.body.media_id;
 
 
-  T.get('oauth/request_token', { force_login: true }, function(req, res) {
+  T.get('oauth/request_token', function(req, res) {
       T.post(function(err, requestToken, requestSecret) {
           if (err)
               res.status(500).send(err);
@@ -63,7 +63,7 @@ app.post('/', (req, res) => {
 
 
 
-    return res.json({'success': true, 'params': params });
+  return res.json({'success': true, 'params': params });
 
   //return res.json({"success": true});
 
