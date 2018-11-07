@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
+
 const Twit = require('twit');
 
 // // New Twit with Heroku Variables
@@ -27,7 +28,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res, next) => {
-    res.send('Waiting for submissions..........');
+    res.send('Waiting for tweets');
 });
 
 
@@ -44,15 +45,15 @@ app.post('/', (req, res) => {
 
 
   //T.post('oauth/request_token', function(req, res) {
-      T.post('oauth/request_token', function(err, requestToken, requestSecret) {
-          if (err)
-              res.status(500).send(err);
-           return res.json({"success":'falseo', "msg": "name not submitted" });
-          else {
-              _requestSecret = requestSecret;
-              res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
-          }
-      });
+//       T.post('oauth/request_token', function(err, requestToken, requestSecret) {
+//           if (err)
+//               res.status(500).send(err);
+//            return res.json({"success":'falseo', "msg": "name not submitted" });
+//           else {
+//               _requestSecret = requestSecret;
+//               res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
+//           }
+//       });
   //});
 
 
