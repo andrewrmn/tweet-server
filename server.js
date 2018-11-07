@@ -6,7 +6,7 @@ const app = express();
 var request = require('request');
 
 
-// const Twit = require('twit');
+const Twit = require('twit');
 
 // // New Twit with Heroku Variables
 var T = new Twit({
@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res, next) => {
-    res.send('Waiting for submissions......');
+    res.send('Waiting for submissions..........');
 });
 
 
