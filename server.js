@@ -103,7 +103,7 @@ app.post('/', (req, res) => {
     
                 T.post('statuses/update', params, function (err, data, response) {
                     //console.log(data);
-                    return res.json({"success": data.text});
+                    return res.json({"success": data.entities.media[0].media_url});
                 })
              } else {
                 return res.json({'success': 'falseO' });   
