@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res, next) => {
-    res.send('Waiting for submissions');
+    res.send('Waiting for submissions......');
 });
 
 
