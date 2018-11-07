@@ -63,6 +63,7 @@ app.post('/', (req, res) => {
 
 
 
+    return res.json({'success': true, 'params': params });
 
   //return res.json({"success": true});
 
