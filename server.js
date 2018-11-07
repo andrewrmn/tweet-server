@@ -86,13 +86,17 @@ app.post('/', (req, res) => {
             if (!err) {
                 // now we can reference the media and post a tweet (media will attach to the tweet)
                 var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
-    
-                return res.json({"success": params});
+                
+                return res.json({'success': true });
+                
+                //return res.json({"success": params});
     
 //                 T.post('statuses/update', params, function (err, data, response) {
 //                     console.log(data);
 //                     return res.json({"success": data});
 //                 })
+             } else {
+                return res.json({'success': 'falseO' });   
              }
         })
     })
