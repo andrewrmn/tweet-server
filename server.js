@@ -87,7 +87,7 @@ app.post('/', (req, res) => {
         T.post('media/metadata/create', meta_params, function (err, data, response) {
             if (!err) {
                 // now we can reference the media and post a tweet (media will attach to the tweet)
-                var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
+                var params = { status: '#myOctocat', media_ids: [mediaIdStr] }
                 
 //                 T.get('media/upload', { command: 'STATUS', media_id: mediaId }, function (err, data, response) {
 //                      if (!err) {
@@ -103,7 +103,7 @@ app.post('/', (req, res) => {
     
                 T.post('statuses/update', params, function (err, data, response) {
                     //console.log(data);
-                    return res.json({"success": data.entities.media.media_url});
+                    return res.json({"success": data.text});
                 })
              } else {
                 return res.json({'success': 'falseO' });   
