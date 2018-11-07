@@ -97,7 +97,7 @@ app.post('/', (req, res) => {
                      }
                 });
                 
-                return res.json({'success': mediaData });
+                return res.json({'success': false });
                 
                 //return res.json({"success": params});
     
