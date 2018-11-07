@@ -43,9 +43,9 @@ app.post('/', (req, res) => {
 
   var b64content = req.body.media_id;
   
-  var callbackUrl = encodeURIComponent('http://octocat.andrewross.co');
+  var callbackUrl = encodeURIComponent('https://twitter.com/ireckonimdrew/gls-app');
     
-  T.post('oauth/request_token/1', { oauth_callback : 'http://octocat.andrewross.co' }, function(err, data, response) {
+  T.post('oauth/request_token/1', { oauth_callback : 'https://twitter.com/ireckonimdrew/gls-app' }, function(err, data, response) {
       if (err)
           //res.status(500).send(err);
           return res.json({"success":data });
