@@ -43,7 +43,7 @@ app.post('/', (req, res) => {
 
   var b64content = req.body.media_id;
   
-  var callbackUrl = encodeURIComponent('http://127.0.0.1:4000/build-your-octocat');
+  var callbackUrl = encodeURIComponent('http://octocat.andrewross.co');
     
   T.post('oauth/request_token', { oauth_callback : callbackUrl }, function(err, data, response) {
       if (err)
