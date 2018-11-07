@@ -34,9 +34,9 @@ app.get('/', (req, res, next) => {
 
 app.post('/', (req, res) => {
   if(
-    req.body.name === undefined ||
-    req.body.name === '' ||
-    req.body.name === null
+    req.body.media_id === undefined ||
+    req.body.media_id === '' ||
+    req.body.media_id === null
   ){
     return res.json({"success": false, "msg": "name not submitted" });
   }
@@ -73,8 +73,6 @@ app.post('/', (req, res) => {
 
 
   //return res.json({'success': true });
-
-  //return res.json({"success": true});
 
     // first we must post the media to Twitter
     T.post('media/upload', { media_data: b64content }, function (err, data, response) {
