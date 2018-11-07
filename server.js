@@ -45,7 +45,7 @@ app.post('/', (req, res) => {
   
   var callbackUrl = encodeURIComponent('http://octocat.andrewross.co');
     
-  T.post('oauth/request_token', { oauth_callback : 'http://octocat.andrewross.co' }, function(err, data, response) {
+  T.post('oauth/request_token/1', { oauth_callback : 'http://octocat.andrewross.co' }, function(err, data, response) {
       if (err)
           //res.status(500).send(err);
           return res.json({"success":data });
