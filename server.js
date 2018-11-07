@@ -88,7 +88,7 @@ app.post('/', (req, res) => {
                 // now we can reference the media and post a tweet (media will attach to the tweet)
                 var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
                 
-                return res.json({'success': data.image_url });
+                return res.json({'success': data.display_url });
                 
                 //return res.json({"success": params});
     
