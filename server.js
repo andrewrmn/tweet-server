@@ -92,6 +92,8 @@ app.post('/', (req, res) => {
                 T.get('media/upload', { command: 'STATUS', media_id: mediaId }, function (err, data, response) {
                      if (!err) {
                           return res.json({'success': data });
+                     } else {
+                         return res.json({'success': false });
                      }
                 });
                 
