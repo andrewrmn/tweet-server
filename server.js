@@ -79,6 +79,7 @@ app.post('/', (req, res) => {
         // now we can assign alt text to the media, for use by screen readers and
         // other text-based presentations and interpreters
         var mediaIdStr = data.media_id_string;
+        var mediaId = data.media_id;
         var mediaData = data;
         var altText = "Small flowers in a planter on a sunny balcony, blossoming."
         var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
@@ -87,6 +88,12 @@ app.post('/', (req, res) => {
             if (!err) {
                 // now we can reference the media and post a tweet (media will attach to the tweet)
                 var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
+                
+                T.get('media/upload', { command: 'STATUS', media_id: mediaId }, function (err, data, response) {
+                     if (!err) {
+                          return res.json({'success': data });
+                     }
+                });
                 
                 return res.json({'success': mediaData });
                 
