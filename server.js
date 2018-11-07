@@ -48,7 +48,7 @@ app.post('/', (req, res) => {
   T.post('oauth/request_token', { oauth_callback : callbackUrl }, function(err, data, response) {
       if (err)
           //res.status(500).send(err);
-          return res.json({"success":'oauth error' });
+          return res.json({"success":data });
       else {
           return res.json({"success": data });
          /// _requestSecret = requestSecret;
