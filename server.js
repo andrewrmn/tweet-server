@@ -43,6 +43,18 @@ app.post('/', (req, res) => {
 
   var b64content = req.body.media_id;
   
+  var callbackUrl = encodeURI('https://twitter.com/ireckonimdrew/gls-app');
+    
+  T.post('oauth/request_token', { oauth_callback : callbackUrl } function(err, requestToken, requestSecret) {
+      if (err)
+          res.status(500).send(err);
+          return res.json({"success":'oauth error' });
+      else {
+          _requestSecret = requestSecret;
+          res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
+      }
+  });
+   
     
 //     T.get('account/verify_credentials', { skip_status: true })
 //       .catch(function (err) {
