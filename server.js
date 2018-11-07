@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 
-const Twit = require('twit');
+var Twit = require('twit');
 
 // // New Twit with Heroku Variables
 var T = new Twit({
