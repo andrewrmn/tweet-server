@@ -44,19 +44,19 @@ app.post('/', (req, res) => {
   var b64content = req.body.media_id;
   
     
-    T.get('account/verify_credentials', { skip_status: true })
-      .catch(function (err) {
-        console.log('caught error', err.stack)
-      })
-      .then(function (result) {
-        // `result` is an Object with keys "data" and "resp".
-        // `data` and `resp` are the same objects as the ones passed
-        // to the callback.
-        // See https://github.com/ttezel/twit#tgetpath-params-callback
-        // for details.
+//     T.get('account/verify_credentials', { skip_status: true })
+//       .catch(function (err) {
+//         console.log('caught error', err.stack)
+//       })
+//       .then(function (result) {
+//         // `result` is an Object with keys "data" and "resp".
+//         // `data` and `resp` are the same objects as the ones passed
+//         // to the callback.
+//         // See https://github.com/ttezel/twit#tgetpath-params-callback
+//         // for details.
 
-        console.log('data', result.data);
-      })
+//         console.log('data', result.data);
+//       })
 
   //T.post('oauth/request_token', function(req, res) {
 //       T.post('oauth/request_token', function(err, requestToken, requestSecret) {
@@ -72,32 +72,32 @@ app.post('/', (req, res) => {
 
 
 
-  return res.json({'success': true });
+  //return res.json({'success': true });
 
   //return res.json({"success": true});
 
     // first we must post the media to Twitter
-    // T.post('media/upload', { media_data: b64content }, function (err, data, response) {
-    //     // now we can assign alt text to the media, for use by screen readers and
-    //     // other text-based presentations and interpreters
-    //     var mediaIdStr = data.media_id_string
-    //     var altText = "Small flowers in a planter on a sunny balcony, blossoming."
-    //     var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
-    //
-    //     T.post('media/metadata/create', meta_params, function (err, data, response) {
-    //         if (!err) {
-    //             // now we can reference the media and post a tweet (media will attach to the tweet)
-    //             var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
-    //
-    //           // return res.json({"success": params});
-    //
-    //             T.post('statuses/update', params, function (err, data, response) {
-    //                 console.log(data);
-    //                 return res.json({"success": data});
-    //             })
-    //          }
-    //     })
-    // })
+    T.post('media/upload', { media_data: b64content }, function (err, data, response) {
+        // now we can assign alt text to the media, for use by screen readers and
+        // other text-based presentations and interpreters
+        var mediaIdStr = data.media_id_string
+        var altText = "Small flowers in a planter on a sunny balcony, blossoming."
+        var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
+    
+        T.post('media/metadata/create', meta_params, function (err, data, response) {
+            if (!err) {
+                // now we can reference the media and post a tweet (media will attach to the tweet)
+                var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
+    
+                return res.json({"success": params});
+    
+//                 T.post('statuses/update', params, function (err, data, response) {
+//                     console.log(data);
+//                     return res.json({"success": data});
+//                 })
+             }
+        })
+    })
 
 
   // var message = "Hello world, my name is" + req.body.name + "!";
