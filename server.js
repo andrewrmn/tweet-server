@@ -2,10 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
-
-var request = require('request');
-
-
 const Twit = require('twit');
 
 // // New Twit with Heroku Variables
@@ -35,8 +31,6 @@ app.get('/', (req, res, next) => {
 });
 
 
-
-
 app.post('/', (req, res) => {
   if(
     req.body.name === undefined ||
@@ -49,8 +43,8 @@ app.post('/', (req, res) => {
   var b64content = req.body.media_id;
 
 
-  T.get('oauth/request_token', function(req, res) {
-      T.post(function(err, requestToken, requestSecret) {
+  //T.post('oauth/request_token', function(req, res) {
+      T.get('oauth/request_token', function(err, requestToken, requestSecret) {
           if (err)
               res.status(500).send(err);
            return res.json({"success":'falseo', "msg": "name not submitted" });
@@ -59,11 +53,11 @@ app.post('/', (req, res) => {
               res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
           }
       });
-  });
+  //});
 
 
 
-  return res.json({'success': true, 'params': params });
+  return res.json({'success': true });
 
   //return res.json({"success": true});
 
