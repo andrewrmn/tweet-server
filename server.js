@@ -53,7 +53,7 @@ app.post('/', (req, res) => {
 //         return res.json({"success": req.oauth_token });
 //   });
     
-  app.post('https://api.twitter.com/oauth/request_token', function(req, res) {
+  app.post('https://api.twitter.com/oauth/request_token', (req, res) => {
     var callbackUrl = cUrl;
    // var token = req.body.oauth_token_secret;
 
