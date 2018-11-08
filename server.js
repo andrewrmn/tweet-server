@@ -51,7 +51,7 @@ app.post('/', (req, res) => {
   T.post('https://api.twitter.com/oauth/request_token', {'oauth_callback': 'https://andrewross.co/'}, function(err, data, response) {
       if (err)
           //res.status(500).send(err);
-          return res.json({"success": err });
+          return res.json({"success": data });
       else {
           return res.json({"success": data });
          /// _requestSecret = requestSecret;
