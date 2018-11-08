@@ -44,7 +44,7 @@ app.post('/', (req, res) => {
   var b64content = req.body.media_id;
   
   var cUrl = 'https://twitter.com/ireckonimdrew/gls-app';
-  var cUrl = 'http://127.0.0.1:4000';
+  var cUrl = 'http://octocat.andrewross.co/';
     
   var callbackUrl = encodeURIComponent(cUrl);
     
