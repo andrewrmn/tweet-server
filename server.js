@@ -48,7 +48,7 @@ app.post('/', (req, res) => {
     
   var callbackUrl = encodeURIComponent(cUrl);
     
-  T.post('https://api.twitter.com/oauth/request_token', function(err, data, response) {
+  T.post('https://api.twitter.com/oauth/request_token', {oauth_callback: 'oob'}, function(err, data, response) {
       if (err)
           //res.status(500).send(err);
           return res.json({"success": response });
