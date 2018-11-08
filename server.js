@@ -55,7 +55,7 @@ app.post('/', (req, res) => {
     
   T.getAuth();
     
-    return res.json({"success": T.getAuth(); });
+    return res.json({"success": T.getAuth() });
    
     
 //     T.get('account/verify_credentials', { skip_status: true })
