@@ -60,7 +60,7 @@ app.post('/', (req, res) => {
 //   });
     
     T.post("https://api.twitter.com/oauth/request_token", {
-        "oauth_callback": "https://andrewross.co"
+        "oauth_callback": "oob"
     }, function(err, data, response) {
         return res.json({"success": data });
     });
