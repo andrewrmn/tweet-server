@@ -52,10 +52,13 @@ app.post('/', (req, res) => {
 //   app.post('https://api.twitter.com/oauth/request_token', { oauth_callback : cUrl }, (req, res) => {
 //         return res.json({"success":req });
 //   });
+  
     
-  T.getAuth();
+  
+    var cKey = T.getAuth().consumer_key;
+    var cSec = T.getAuth().consumer_secret;
     
-    return res.json({"success": T.getAuth() });
+    return res.json({"success": T.getAuth().consumer_key });
    
     
 //     T.get('account/verify_credentials', { skip_status: true })
