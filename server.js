@@ -49,21 +49,11 @@ app.post('/', (req, res) => {
     
   var callbackUrl = encodeURIComponent(cUrl);
     
-    
 //   app.post('https://api.twitter.com/oauth/request_token', { oauth_callback : cUrl }, (req, res) => {
 //         return res.json({"success":req });
 //   });
     
-  T.getAuth({ oauth_callback : cUrl }, function(err, data, response) {
-      if (err)
-          //res.status(500).send(err);
-          return res.json({"success":data });
-      else {
-          return res.json({"success": data });
-         /// _requestSecret = requestSecret;
-         // res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
-      }
-  });
+  T.getAuth();
    
     
 //     T.get('account/verify_credentials', { skip_status: true })
