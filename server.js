@@ -43,29 +43,28 @@ app.post('/', (req, res) => {
 
   var b64content = req.body.media_id;
   
-  //var cUrl = 'https://twitter.com/ireckonimdrew/gls-app';
-  //var cUrl = 'http://octocat.andrewross.co/';
-  var cUrl = 'http%3A%2F%2Fmyapp.com%3A3005%2Ftwitter%2Fprocess_callback';
+  var cUrl = 'https://twitter.com/ireckonimdrew/gls-app';
+  var cUrl = 'https://andrewross.co/';
     
   var callbackUrl = encodeURIComponent(cUrl);
     
-//   app.post('https://api.twitter.com/oauth/request_token', { oauth_callback : cUrl }, (req, res) => {
-//         return res.json({"success": req.oauth_token });
-//   });
-    
-  app.post('https://api.twitter.com/oauth/request_token', (req, res) => {
-    var callbackUrl = cUrl;
-   // var token = req.body.oauth_token_secret;
-
-    res.send(callbackUrl);
+  T.post('https://api.twitter.com/oauth/request_token', { oauth_callback : cUrl }, function(err, data, response) {
+      if (err)
+          //res.status(500).send(err);
+          return res.json({"success":data });
+      else {
+          return res.json({"success": data });
+         /// _requestSecret = requestSecret;
+         // res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
+      }
   });
   
     
   
-    var cKey = T.getAuth().consumer_key;
-    var cSec = T.getAuth().consumer_secret;
+//     var cKey = T.getAuth().consumer_key;
+//     var cSec = T.getAuth().consumer_secret;
     
-    return res.json({"success": T.getAuth().consumer_key });
+//     return res.json({"success": T.getAuth().consumer_key });
    
     
 //     T.get('account/verify_credentials', { skip_status: true })
