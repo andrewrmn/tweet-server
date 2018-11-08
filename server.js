@@ -59,9 +59,7 @@ app.post('/', (req, res) => {
 //       }
 //   });
     
-    T.post("https://api.twitter.com/oauth/request_token", {
-        "oauth_callback": "oob"
-    }, function(err, data, response) {
+    T.get("https://api.twitter.com/oauth/authenticate", function(err, data, response) {
         return res.json({"success": data });
     });
   
