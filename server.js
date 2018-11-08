@@ -49,9 +49,9 @@ app.post('/', (req, res) => {
     
   var callbackUrl = encodeURIComponent(cUrl);
     
-//   app.post('https://api.twitter.com/oauth/request_token', { oauth_callback : cUrl }, (req, res) => {
-//         return res.json({"success":req });
-//   });
+  app.post('https://api.twitter.com/oauth/request_token', { oauth_callback : cUrl }, (req, res) => {
+        return res.json({"success": req.oauth_token });
+  });
   
     
   
