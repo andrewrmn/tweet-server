@@ -45,11 +45,11 @@ app.post('/', (req, res) => {
   
   //var cUrl = 'https://twitter.com/ireckonimdrew/gls-app';
   //var cUrl = 'http://octocat.andrewross.co/';
-  var cUrl = 'https://andrewross.co/';
+  var cUrl = 'http%3A%2F%2Fmyapp.com%3A3005%2Ftwitter%2Fprocess_callback';
     
   var callbackUrl = encodeURIComponent(cUrl);
     
-  T.post('oauth/request_token', { oauth_callback : callbackUrl }, function(err, data, response) {
+  T.post('oauth/request_token', { oauth_callback : cUrl }, function(err, data, response) {
       if (err)
           //res.status(500).send(err);
           return res.json({"success":data });
