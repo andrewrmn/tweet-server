@@ -43,8 +43,9 @@ app.post('/', (req, res) => {
 
   var b64content = req.body.media_id;
   
-  var cUrl = 'https://twitter.com/ireckonimdrew/gls-app';
-  var cUrl = 'http://octocat.andrewross.co/';
+  //var cUrl = 'https://twitter.com/ireckonimdrew/gls-app';
+  //var cUrl = 'http://octocat.andrewross.co/';
+  var cUrl = 'https://andrewross.co/';
     
   var callbackUrl = encodeURIComponent(cUrl);
     
