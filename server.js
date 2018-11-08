@@ -43,9 +43,12 @@ app.post('/', (req, res) => {
 
   var b64content = req.body.media_id;
   
-  var callbackUrl = encodeURIComponent('https://twitter.com/ireckonimdrew/gls-app');
+  var cUrl = 'https://twitter.com/ireckonimdrew/gls-app';
+  var cUrl = 'http://127.0.0.1:4000';
     
-  T.post('oauth/request_token', { oauth_callback : 'http://127.0.0.1:4000' }, function(err, data, response) {
+  var callbackUrl = encodeURIComponent(cUrl);
+    
+  T.post('oauth/request_token', { oauth_callback : cUrl }, function(err, data, response) {
       if (err)
           //res.status(500).send(err);
           return res.json({"success":data });
