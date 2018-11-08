@@ -54,10 +54,10 @@ app.post('/', (req, res) => {
 //   });
     
   app.post('https://api.twitter.com/oauth/request_token', function(req, res) {
-    var user_id = req.body.oauth_token;
-    var token = req.body.oauth_token_secret;
+    var callbackUrl = cUrl;
+   // var token = req.body.oauth_token_secret;
 
-    res.send(user_id + ' ' + token);
+    res.send(callbackUrl);
   });
   
     
