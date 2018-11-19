@@ -18,6 +18,7 @@
     "twit": "^2.2.11"
   },
   "devDependencies": {
-    "oauth": "^0.9.15"
+    "oauth": "^0.9.15",
+    "twitter": "^1.7.1"
   }
 }
