@@ -7,9 +7,9 @@ var Twitter = require('twitter');
 var OAuth= require('oauth').OAuth;
 
 
+var TWITTER_CONSUMER_KEY = process.env.CONSUMER_KEY;
+var TWITTER_CONSUMER_SECRET = process.env.CONSUMER_SECRET;
 
-var TWITTER_CONSUMER_KEY = 'K5FIfgCiyqrzRG2u5Y2vKTIMv';
-var TWITTER_CONSUMER_SECRET = '6NJ0VW3DzG3hxWSzmRFPwfgAc9AF5X4ftc4wyDQluhf4a1WzCk';
 var oat="";
 var oas="";
 var oav="";
