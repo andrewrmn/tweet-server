@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 
+var OAuth = require('oauth');
+
 var Twit = require('twit');
 
 // // New Twit with Heroku Variables
@@ -50,16 +52,54 @@ app.post('/', (req, res) => {
 
   var callbackUrl = encodeURIComponent(cUrl);
 
-  T.post('https://api.twitter.com/oauth/request_token', {'oauth_callback': 'https://andrewross.co/', 'oauth_token_secret': ''}, function(err, data, response) {
-      if (err)
-          //res.status(500).send(err);
-          return res.json({"success": data });
-      else {
-          return res.json({"success": data });
-         /// _requestSecret = requestSecret;
-         // res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
-      }
-  });
+//   T.post('https://api.twitter.com/oauth/request_token', {'oauth_callback': 'https://andrewross.co/', 'oauth_token_secret': ''}, function(err, data, response) {
+//       if (err)
+//           //res.status(500).send(err);
+//           return res.json({"success": data });
+//       else {
+//           return res.json({"success": data });
+//          /// _requestSecret = requestSecret;
+//          // res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
+//       }
+//   });
+    
+    app.post('https://api.twitter.com/oauth/request_token', function (req, res) {
+        var oat="";
+        var oas="";
+        var oav="";
+        
+        var oauth = new OAuth.OAuth(
+            'https://api.twitter.com/oauth/request_token',
+            'https://api.twitter.com/oauth/access_token',
+            process.env.CONSUMER_KEY,
+            consumer_secret: process.env.CONSUMER_SECRET,
+            '1.0A',
+            null,
+            'HMAC-SHA1'
+        );
+        
+        oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
+            if (error) {
+                console.log(error);
+                return res.json({"success": error });
+            }
+            else {
+                //req.session.oauth = {};
+                //req.session.oauth.token = oauth_token;
+                console.log('oauth.token: ' + oauth_token);
+                //req.session.oauth.token_secret = oauth_token_secret;
+                console.log('oauth.token_secret: ' + oauth_token_secret);
+                oat=oauth_token;
+                oas=oauth_token_secret;
+                var response={
+                    oauth_token: oauth_token,
+                    oauth_token_secret: oauth_token_secret
+                }
+                 return res.send(response)
+                //res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)
+            }
+        });
+    });
 
 
 
