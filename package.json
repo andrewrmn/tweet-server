@@ -11,8 +11,11 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "oauth": "^0.9.15",
+    "querystring": "^0.2.0",
     "request": "^2.83.0",
-    "twit": "^2.2.11"
+    "twit": "^2.2.11",
+    "twitter": "^1.7.1"
   },
   "devDependencies": {
     "oauth": "^0.9.15",
