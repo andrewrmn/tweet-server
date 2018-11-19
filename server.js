@@ -70,7 +70,7 @@ app.post('/', (req, res) => {
             'https://api.twitter.com/oauth/request_token',
             'https://api.twitter.com/oauth/access_token',
             process.env.CONSUMER_KEY,
-            consumer_secret: process.env.CONSUMER_SECRET,
+            process.env.CONSUMER_SECRET,
             '1.0A',
             null,
             'HMAC-SHA1'
