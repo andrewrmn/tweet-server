@@ -61,7 +61,7 @@ app.post('/', (req, res) => {
 //       }
 //   });
     
-    app.post('https://api.twitter.com/oauth/request_token', function (req, res) {
+    //app.post('https://api.twitter.com/oauth/request_token', function (req, res) {
         var oat="";
         var oas="";
         var oav="";
