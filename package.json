@@ -1,7 +1,7 @@
 {
   "name": "recaptcha",
   "version": "1.0.0",
-  "description": "Recaptcha server",
+  "description": "Twitter server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -9,16 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.333.0",
     "body-parser": "^1.18.2",
-    "busboy": "^0.2.14",
     "express": "^4.16.2",
     "request": "^2.83.0",
-    "sendgrid": "^4.2.0",
     "twit": "^2.2.11"
   },
   "devDependencies": {
     "oauth": "^0.9.15",
+    "querystring": "^0.2.0",
     "twitter": "^1.7.1"
   }
 }
