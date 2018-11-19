@@ -65,6 +65,7 @@ app.post('/', (req, res) => {
         var oat="";
         var oas="";
         var oav="";
+        var cb = 'https://andrewross.co/';
         
         var oauth = new OAuth.OAuth(
             'https://api.twitter.com/oauth/request_token',
@@ -75,6 +76,15 @@ app.post('/', (req, res) => {
             null,
             'HMAC-SHA1'
         );
+        var oa = new OAuth(
+            "https://api.twitter.com/oauth/request_token",	
+            "https://api.twitter.com/oauth/access_token",
+            process.env.CONSUMER_KEY,
+            process.env.CONSUMER_SECRET,
+            "1.0",
+            cb,
+            "HMAC-SHA1"
+            );
         
         oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
             if (error) {
