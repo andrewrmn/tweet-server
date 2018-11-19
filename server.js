@@ -5,18 +5,18 @@ const app = express();
 
 var OAuth = require('oauth');
 
-var Twit = require('twit');
+// var Twit = require('twit');
 
-// // New Twit with Heroku Variables
-var T = new Twit({
-    consumer_key: process.env.CONSUMER_KEY,
-    consumer_secret: process.env.CONSUMER_SECRET,
-    //app_only_auth: false,
-    access_token: process.env.ACCESS_TOKEN,
-    access_token_secret: process.env.ACCESS_TOKEN_SECRET
-    // timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
-    //strictSSL:            false     // optional - requires SSL certificates to be valid.
-});
+// // // New Twit with Heroku Variables
+// var T = new Twit({
+//     consumer_key: process.env.CONSUMER_KEY,
+//     consumer_secret: process.env.CONSUMER_SECRET,
+//     //app_only_auth: false,
+//     access_token: process.env.ACCESS_TOKEN,
+//     access_token_secret: process.env.ACCESS_TOKEN_SECRET
+//     // timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+//     //strictSSL:            false     // optional - requires SSL certificates to be valid.
+// });
 
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 app.use(bodyParser.json({limit: '50mb'}));
@@ -97,7 +97,7 @@ app.post('/', (req, res) => {
                 //res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)
             }
         });
-    });
+
 
 
 
