@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 
-var OAuth = require('oauth');
+var OAuth= require('oauth').OAuth;
 
 // var Twit = require('twit');
 
