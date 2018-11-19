@@ -61,16 +61,9 @@ app.post('/', (req, res) => {
       }
   });
 
-  request.post('https://api.twitter.com/oauth/request_token', {
-      'auth': {
-        'oauth_callback': 'https://andrewross.co/',
-        'oauth_token_secret': ''
-      }
-    });
 
 
-
-
+    
 
 //     var cKey = T.getAuth().consumer_key;
 //     var cSec = T.getAuth().consumer_secret;
