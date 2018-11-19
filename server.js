@@ -20,7 +20,7 @@ var oa = new OAuth(
     TWITTER_CONSUMER_KEY ,
     TWITTER_CONSUMER_SECRET,
     "1.0",
-    "https://twitter.com/ireckonimdrew/gls-app",
+    "https://ar-tweet-server.herokuapp.com/",
     "HMAC-SHA1"
 );
 
