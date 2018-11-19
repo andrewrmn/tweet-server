@@ -16,5 +16,8 @@
     "request": "^2.83.0",
     "sendgrid": "^4.2.0",
     "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "oauth": "^0.9.15"
   }
 }
