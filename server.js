@@ -6,6 +6,21 @@ var Twitter = require('twitter');
 
 var OAuth= require('oauth').OAuth;
 
+var TWITTER_CONSUMER_KEY = process.env.CONSUMER_KEY;
+var TWITTER_CONSUMER_SECRET = process.env.CONSUMER_SECRET;
+var oat="";
+var oas="";
+var oav="";
+
+var oa = new OAuth(
+	"https://api.twitter.com/oauth/request_token",
+	"https://api.twitter.com/oauth/access_token",
+	 TWITTER_CONSUMER_KEY ,
+	TWITTER_CONSUMER_SECRET,
+	"1.0",
+	"https://andrewross.co",
+	"HMAC-SHA1"
+);
 // var Twit = require('twit');
 
 // // // New Twit with Heroku Variables
@@ -63,21 +78,9 @@ app.post('/', (req, res) => {
 //   });
     
     //app.post('https://api.twitter.com/oauth/request_token', function (req, res) {
-        var oat="";
-        var oas="";
-        var oav="";
-        var cb = 'https://andrewross.co/';
-        
+
       
-        var oa = new OAuth(
-            "https://api.twitter.com/oauth/request_token",	
-            "https://api.twitter.com/oauth/access_token",
-            process.env.CONSUMER_KEY,
-            process.env.CONSUMER_SECRET,
-            "1.0",
-            cb,
-            "HMAC-SHA1"
-        );
+
         
         oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
             if (error) {
