@@ -21,7 +21,7 @@ var oa = new OAuth(
     TWITTER_CONSUMER_KEY ,
     TWITTER_CONSUMER_SECRET,
     "1.0",
-    "http://localhost:4000/auth",
+    "https://ar-tweet-server.herokuapp.com/auth",
     "HMAC-SHA1"
 );
 
