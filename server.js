@@ -136,8 +136,8 @@ app.get('/auth', (req, res, next) => {
 
                                 var getParams = { command: 'STATUS', media_id: [mediaIdStr] }
 
-                                res.send(true);
-                                // return res.json({"success": true});
+                                //res.send(true);
+                                return res.json({"success": true});
 
                                 // T.get('statuses/update', getParams, function (err, data, response) {
                                 //     console.log(data);
