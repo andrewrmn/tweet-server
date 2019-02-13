@@ -47,7 +47,7 @@ app.get('/', (req, res, next) => {
 });
 
 
-app.post('/', (req, res, next) => {
+app.post('/', (req, res) => {
     oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
         if (error) {
             console.log(error);
@@ -70,10 +70,9 @@ app.post('/', (req, res, next) => {
             //res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)
         }
     });
-    next();
 });
 
-app.post('/auth', (req, res, next) => {
+app.post('/auth', (req, res) => {
 
     if(
         req.body.media_id === undefined ||
@@ -150,7 +149,6 @@ app.post('/auth', (req, res, next) => {
 		);
 
     }
-    next();
 });
 
 
