@@ -9,14 +9,13 @@ var Twit = require('twit');
 var TWITTER_CONSUMER_KEY = 'K5FIfgCiyqrzRG2u5Y2vKTIMv';
 var TWITTER_CONSUMER_SECRET = '6NJ0VW3DzG3hxWSzmRFPwfgAc9AF5X4ftc4wyDQluhf4a1WzCk';
 
-var TWITTER_CONSUMER_KEY = process.env.CONSUMER_KEY;
-var TWITTER_CONSUMER_SECRET = process.env.CONSUMER_SECRET;
+// var TWITTER_CONSUMER_KEY = process.env.CONSUMER_KEY;
+// var TWITTER_CONSUMER_SECRET = process.env.CONSUMER_SECRET;
 
 var oat = '';
 var oas = '';
 var oav = '';
 var b64content = '';
-
 
 
 var oa = new OAuth(
@@ -26,11 +25,12 @@ var oa = new OAuth(
     TWITTER_CONSUMER_SECRET,
     "1.0",
     "http://127.0.0.1:4000/close",
+    //"https://ar-tweet-server.herokuapp.com/auth",
     "HMAC-SHA1"
 );
 
-app.use(cors());
 
+app.use(cors());
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 app.use(bodyParser.json({limit: '50mb'}));
 var port = process.env.PORT || 4000;
