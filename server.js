@@ -23,7 +23,7 @@ var oa = new OAuth(
     TWITTER_CONSUMER_KEY ,
     TWITTER_CONSUMER_SECRET,
     "1.0",
-    "https://ar-tweet-server.herokuapp.com/auth",
+    "http://octocat.andrewross.co/close",
     "HMAC-SHA1"
 );
 
