@@ -29,6 +29,8 @@ var oa = new OAuth(
 
 
 app.use(cors());
+app.options('*', cors());
+
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 app.use(bodyParser.json({limit: '50mb'}));
 var port = process.env.PORT || 4000;
