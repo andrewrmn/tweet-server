@@ -128,7 +128,7 @@ app.post('/auth', (req, res) => {
                         T.post('media/metadata/create', meta_params, function (err, data, response) {
                             if (!err) {
                                 // now we can reference the media and post a tweet (media will attach to the tweet)
-                                var params = { status: '#myoctocat is out of the bag… building your own at myoctocat.com', media_ids: [mediaIdStr] }
+                                var params = { status: '#myoctocat is out of the bag… build your own at myoctocat.com', media_ids: [mediaIdStr] }
 
                                 var getParams = { command: 'STATUS', media_id: [mediaIdStr] }
 
