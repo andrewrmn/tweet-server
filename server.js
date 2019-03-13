@@ -100,6 +100,7 @@ app.post('/auth', (req, res) => {
     			if (error){
     				console.log(error);
     				res.send("yeah something broke.");
+				return res.json({"success": false});
     			} else {
     				results.access_token=oauth_access_token;
     				results.access_token_secret=oauth_access_token_secret;
@@ -141,7 +142,9 @@ app.post('/auth', (req, res) => {
                                     }
                                     console.log(data);
                                 })
-                             }
+                             } else {
+                                return res.json({"success": false});
+                            }
                         })
                     })
     			}
