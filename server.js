@@ -87,6 +87,15 @@ app.post('/auth', (req, res) => {
     var oav = req.body.oauth_verifier;
 	var oats = req.body.oauth_token_secret;
     b64content = req.body.media_id;
+	
+    var text = req.body.tweetText;
+    if(
+        req.body.tweetText === undefined ||
+        req.body.tweetText === '' ||
+        req.body.tweetText === null
+    ){
+        text = '#myoctocat is out of the bag… build your own at myoctocat.com';
+    }
 
     // Make sure oath tokens match
     if( oat != oatoken ) {
@@ -129,7 +138,7 @@ app.post('/auth', (req, res) => {
                         T.post('media/metadata/create', meta_params, function (err, data, response) {
                             if (!err) {
                                 // now we can reference the media and post a tweet (media will attach to the tweet)
-                                var params = { status: '#myoctocat is out of the bag… build your own at myoctocat.com', media_ids: [mediaIdStr] }
+                                var params = { status: text, media_ids: [mediaIdStr] }
 
                                 var getParams = { command: 'STATUS', media_id: [mediaIdStr] }
 
