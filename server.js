@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res, next) => {
-    res.send('Waiting for tweets');
+    res.send('Waiting for tweets...');
 });
 
 
@@ -79,7 +79,7 @@ app.post('/auth', (req, res) => {
         req.body.media_id === '' ||
         req.body.media_id === null
     ){
-        return res.json({"success": false });
+        return res.json({"success": false, "msg": "No image data" });
     }
 
     // Get Twitter Response Values
@@ -109,7 +109,7 @@ app.post('/auth', (req, res) => {
     			if (error){
     				console.log(error);
     				res.send("yeah something broke.");
-				return res.json({"success": false});
+				return res.json({"success": false, "msg": "oAuth Fail"});
     			} else {
     				results.access_token=oauth_access_token;
     				results.access_token_secret=oauth_access_token_secret;
@@ -152,7 +152,7 @@ app.post('/auth', (req, res) => {
                                     console.log(data);
                                 })
                              } else {
-                                return res.json({"success": false});
+                                return res.json({"success": false, "msg": "Posting issue"});
                             }
                         })
                     })
