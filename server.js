@@ -98,6 +98,15 @@ app.post('/auth', (req, res) => {
         text = '#myoctocat is out of the bag… build your own at myoctocat.com';
     }
 
+    var text = req.body.tweetText;
+    if(
+        req.body.tweetText === undefined ||
+        req.body.tweetText === '' ||
+        req.body.tweetText === null
+    ){
+        text = '#myoctocat is out of the bag… build your own at myoctocat.com';
+    }
+
     // Make sure oath tokens match
     if( oat != oatoken ) {
         console.log('Error: Tokens do not match');
