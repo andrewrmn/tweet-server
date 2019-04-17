@@ -19,6 +19,7 @@
     "twitter": "^1.7.1"
   },
   "devDependencies": {
+    "aws-sdk": "^2.438.0",
     "oauth": "^0.9.15",
     "querystring": "^0.2.0",
     "twitter": "^1.7.1"

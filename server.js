@@ -6,11 +6,11 @@ const app = express();
 var Twitter = require('twitter');
 var OAuth= require('oauth').OAuth;
 var Twit = require('twit');
-var TWITTER_CONSUMER_KEY = 'K5FIfgCiyqrzRG2u5Y2vKTIMv';
-var TWITTER_CONSUMER_SECRET = '6NJ0VW3DzG3hxWSzmRFPwfgAc9AF5X4ftc4wyDQluhf4a1WzCk';
+const AWS = require('aws-sdk');
 
-// var TWITTER_CONSUMER_KEY = process.env.CONSUMER_KEY;
-// var TWITTER_CONSUMER_SECRET = process.env.CONSUMER_SECRET;
+
+var TWITTER_CONSUMER_KEY = process.env.CONSUMER_KEY;
+var TWITTER_CONSUMER_SECRET = process.env.CONSUMER_SECRET;
 
 var oat = '';
 var oas = '';
@@ -24,13 +24,14 @@ var oa = new OAuth(
     TWITTER_CONSUMER_KEY ,
     TWITTER_CONSUMER_SECRET,
     "1.0",
-    "http://127.0.0.1:4000/close",
-    //"https://ar-tweet-server.herokuapp.com/auth",
+    "http://octocat.andrewross.co/close",
     "HMAC-SHA1"
 );
 
 
 app.use(cors());
+app.options('*', cors());
+
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 app.use(bodyParser.json({limit: '50mb'}));
 var port = process.env.PORT || 4000;
@@ -43,7 +44,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res, next) => {
-    res.send('Waiting for tweets');
+    res.send('Waiting for tweets...');
 });
 
 
@@ -70,7 +71,6 @@ app.post('/', (req, res) => {
             //res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)
         }
     });
-
 });
 
 app.post('/auth', (req, res) => {
@@ -80,7 +80,7 @@ app.post('/auth', (req, res) => {
         req.body.media_id === '' ||
         req.body.media_id === null
     ){
-        return res.json({"success": false });
+        return res.json({"success": false, "msg": "No image data" });
     }
 
     // Get Twitter Response Values
@@ -88,6 +88,15 @@ app.post('/auth', (req, res) => {
     var oav = req.body.oauth_verifier;
 	var oats = req.body.oauth_token_secret;
     b64content = req.body.media_id;
+
+    var text = req.body.tweetText;
+    if(
+        req.body.tweetText === undefined ||
+        req.body.tweetText === '' ||
+        req.body.tweetText === null
+    ){
+        text = '#myoctocat is out of the bag… build your own at myoctocat.com';
+    }
 
     // Make sure oath tokens match
     if( oat != oatoken ) {
@@ -101,6 +110,7 @@ app.post('/auth', (req, res) => {
     			if (error){
     				console.log(error);
     				res.send("yeah something broke.");
+				return res.json({"success": false, "msg": "oAuth Fail"});
     			} else {
     				results.access_token=oauth_access_token;
     				results.access_token_secret=oauth_access_token_secret;
@@ -129,7 +139,7 @@ app.post('/auth', (req, res) => {
                         T.post('media/metadata/create', meta_params, function (err, data, response) {
                             if (!err) {
                                 // now we can reference the media and post a tweet (media will attach to the tweet)
-                                var params = { status: 'Check out my Octocat #myOctocat', media_ids: [mediaIdStr] }
+                                var params = { status: text, media_ids: [mediaIdStr] }
 
                                 var getParams = { command: 'STATUS', media_id: [mediaIdStr] }
 
@@ -142,7 +152,9 @@ app.post('/auth', (req, res) => {
                                     }
                                     console.log(data);
                                 })
-                             }
+                             } else {
+                                return res.json({"success": false, "msg": "Posting issue"});
+                            }
                         })
                     })
     			}
@@ -152,6 +164,44 @@ app.post('/auth', (req, res) => {
     }
 });
 
+app.post('/aws', (req, res) => {
+    if(
+        req.body.image === undefined ||
+        req.body.image === '' ||
+        req.body.image === null
+    ){
+        return res.json({'success': false, 'msg': 'img not submitted' });
+    }
+
+    AWS.config.update({ accessKeyId: process.env.AWS_KEY, secretAccessKey: process.env.AWS_SECRET });
+
+    var emailAddress = req.body.email;
+    let b64content = req.body.image;
+    let decodedImage = Buffer.from(b64content, 'base64');
+    let filename = 'my-octocat-' + Date.now() + '.png';
+    let s3 = new AWS.S3();
+
+    s3.putObject({
+        Bucket: 'octocat-generator-gh-origin',
+        Key: filename,
+        Body: decodedImage,
+        ACL: 'public-read'
+    },function (err, resp) {
+        if(err) {
+            return res.json({'success': false });
+        } else {
+            // On successful image submissions
+            var imgUrl = 'https://octocat-generator-assets.githubusercontent.com/' + filename;
+            var source = 'web';
+            var formName = 'octocat-generator-form';
+            var formId = '88570519';
+            var url = 'https://s88570519.t.eloqua.com/e/f2';
+            var params = 'elqFormName='+ formName +'&elqSiteID='+ formId +'&emailAddress='+ emailAddress +'&gitHubOctocatURL='+ imgUrl +'&sourceURL='+ source +'';
+
+            return res.json({'success': true, 'url': url, 'params': params, 'imgUrl': imgUrl });
+        }
+    });
+});
 
 app.listen(port, function () {
     console.log('App listening on port ' + port);
