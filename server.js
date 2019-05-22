@@ -44,11 +44,11 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res, next) => {
-    res.send('Waiting for tweets...');
+    res.send('Waiting for submission');
 });
 
 
-app.post('/', (req, res) => {
+app.post('/auth', (req, res) => {
     oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
         if (error) {
             console.log(error);
@@ -73,7 +73,7 @@ app.post('/', (req, res) => {
     });
 });
 
-app.post('/auth', (req, res) => {
+app.post('/tweet', (req, res) => {
 
     if(
         req.body.media_id === undefined ||
